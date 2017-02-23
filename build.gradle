@@ -1,0 +1,81 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.3.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'gs-spring-boot'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    // tag::jetty[]
+    compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+    // end::jetty[]
+    // tag::actuator[]
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    // end::actuator[]
+    // tag::test[]
+    compile("org.springframework.boot:spring-boot-starter-test")
+    // end::test[]
+
+    //Commons
+    compile "com.google.guava:guava:$guavaVersion"
+    //
+
+    //Apache
+    compile "org.apache.httpcomponents:httpclient:$apacheHttpVersion"
+    compile "org.apache.commons:commons-lang3:$apacheCommonsVersion"
+    compile "org.apache.httpcomponents:httpmime:$apacheHttpVersion"
+    compile "commons-io:commons-io:$apacheIoVersion"
+    //
+
+    //Gson
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "org.json:org.json:$orgJsonVersion"
+    compile "com.google.guava:guava:$guavaVersion"
+    //
+
+    //jUnit
+    testCompile("junit:junit")
+    testCompile "junit:junit:$junitVersion"
+    testCompile "org.springframework:spring-test:$springVersion"
+
+    /*DataBase dependencies*/
+    compile "org.springframework.data:spring-data-jpa:$springJPAVersion"
+    compile "org.hibernate:hibernate-entitymanager:$hibernateVersion"
+    compile "org.hibernate:hibernate-java8:$hibernateVersion"
+    compile "org.hibernate:hibernate-core:$hibernateVersion"
+    compile "javax.transaction:jta:1.1"
+    compile "org.xerial:sqlite-jdbc:$sqliteVersion"
+
+    //JSP
+    compile("org.apache.tomcat.embed:tomcat-embed-jasper")
+    compile group: 'javax.servlet', name: 'jstl', version: '1.2'
+
+    //JNA
+    compile "net.java.dev.jna:jna:$jnaVersion"
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile 'org.json:json:20160212'
+}

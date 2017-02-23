@@ -1,0 +1,10 @@
+gateway:
+  ip: http://192.168.40.229
+  user: admin
+  password: admin
+  channelNumbers: 16
+  concordiaUrl: https://santi.mitrol.net:9443
+  httpApi: true
+
+spring.mvc.view.prefix: /
+spring.mvc.view.suffix: .jsp
